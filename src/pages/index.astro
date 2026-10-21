@@ -1,4 +1,6 @@
 ---
+import "../styles/global.css";
+import "../styles/index.css";
 ---
 
 <html lang="en">
@@ -8,9 +10,80 @@
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>About Consler</title>
 	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <body>
+    <main class="container">
+      <header class="hero">
+        <h1>Consler here.</h1>
+      </header>
+
+      <section class="about" aria-labelledby="about-title">
+        <p>
+          A developer who cares about free and open source technology.
+        </p>
+
+        <hr class="divider" aria-hidden="true">
+
+        <h2>Details</h2>
+        <ul class="personal-info" aria-label="Personal details">
+          <li><span class="label">Pronouns</span>: <span class="description">he/him</span></li>
+          <li><span class="label">My time</span>: <time id="consler-time" datetime="" aria-live="polite">—:—</time></li>
+        </ul>
+      </section>
+
+      <section class="hobbies" aria-labelledby="hobbies-title">
+        <h2 id="hobbies-title">Hobbies</h2>
+        <ul class="personal-info hobby-list" aria-label="Hobbies">
+          <li><span class="label">Coding</span>: <span class="description">Making cool open source projects for myself & others</span></li>
+          <li><span class="label">Minecraft</span>: <span class="description">Working with redstone, commands, and speedruning</span></li>
+          </ul>
+      </section>
+
+      <p class="portfolio-link"><a class="button" href="/portfolio">View my portfolio</a></p>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <h2>Contact me</h2>
+        <p>Email: <a href="mailto:consler2000@gmail.com">consler2000@gmail.com</a></p>
+        <p>Discord: <span class="discord-handle">@consler</span></p>
+      </div>
+    </footer>
+
+    <div id="scroll-progress" aria-hidden="true"><div class="bar"></div></div>
+
+    <script>
+      (function()
+      {
+        const el = document.getElementById('consler-time');
+        function pad(n : number) 
+		{ 
+			return n.toString().padStart(2, '0'); 
+		}
+        function update()
+        {
+          const now = new Date();
+          const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+          const target = new Date(utc + (2 * 60 * 60 * 1000));
+          el.textContent = pad(target.getHours()) + ':' + pad(target.getMinutes());
+          el.setAttribute('datetime', target.toISOString());
+        }
+        update();
+        setInterval(update, 30000);
+
+        const progress = document.querySelector('#scroll-progress .bar');
+        function updateProgress()
+        {
+          const doc = document.documentElement;
+          const scrollHeight = doc.scrollHeight - doc.clientHeight;
+          const pct = scrollHeight > 0 ? (window.scrollY / scrollHeight) * 100 : 0;
+          progress.style.width = pct + '%';
+        }
+        updateProgress();
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        window.addEventListener('resize', updateProgress);
+      })();
+    </script>
+  </body>
 </html>
