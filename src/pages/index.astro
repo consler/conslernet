@@ -6,9 +6,9 @@ import "../styles/index.css";
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/jpeg" href="/favicon.jpg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="About Consler" />
 		<meta name="generator" content={Astro.generator} />
 		<title>About Consler</title>
 	</head>
@@ -18,14 +18,14 @@ import "../styles/index.css";
         <h1>Consler here</h1>
       </header>
 
-      <section class="about" aria-labelledby="about-title">
+      <section class="about" aria-labelledby="details-title">
         <p>
           A guy who loves free and open source technology
         </p>
 
         <hr class="divider" aria-hidden="true">
 
-        <h2>Details</h2>
+        <h2 id="details-title">Details</h2>
         <ul class="personal-info" aria-label="Personal details">
           <li><span class="label">Pronouns</span>: <span class="description">he/him</span></li>
           <li><span class="label">My time</span>: <time id="consler-time" datetime="" aria-live="polite">—:—</time></li>
@@ -36,7 +36,7 @@ import "../styles/index.css";
         <h2 id="hobbies-title">Hobbies</h2>
         <ul class="personal-info hobby-list" aria-label="Hobbies">
           <li><span class="label">Coding</span>: <span class="description">Making cool open source projects for myself & others</span></li>
-          <li><span class="label">Minecraft</span>: <span class="description">Working with redstone, commands, and speedruning</span></li>
+          <li><span class="label">Minecraft</span>: <span class="description">Working with redstone, commands, and speedrunning</span></li>
           </ul>
       </section>
 
@@ -51,39 +51,25 @@ import "../styles/index.css";
       </div>
     </footer>
 
-    <div id="scroll-progress" aria-hidden="true"><div class="bar"></div></div>
-
     <script>
-      (function()
-      {
-        const el = document.getElementById('consler-time');
-        function pad(n : number) 
-		{ 
-			return n.toString().padStart(2, '0'); 
-		}
-        function update()
-        {
-          const now = new Date();
-          const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-          const target = new Date(utc + (2 * 60 * 60 * 1000));
-          el.textContent = pad(target.getHours()) + ':' + pad(target.getMinutes());
-          el.setAttribute('datetime', target.toISOString());
-        }
-        update();
-        setInterval(update, 30000);
+      const el = document.querySelector<HTMLTimeElement>('#consler-time');
+      if (el) {
+        const formatter = new Intl.DateTimeFormat('en-GB', {
+          timeZone: 'Europe/Berlin',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false
+        });
 
-        const progress = document.querySelector('#scroll-progress .bar');
-        function updateProgress()
-        {
-          const doc = document.documentElement;
-          const scrollHeight = doc.scrollHeight - doc.clientHeight;
-          const pct = scrollHeight > 0 ? (window.scrollY / scrollHeight) * 100 : 0;
-          progress.style.width = pct + '%';
-        }
-        updateProgress();
-        window.addEventListener('scroll', updateProgress, { passive: true });
-        window.addEventListener('resize', updateProgress);
-      })();
+        const update = () => {
+          const now = new Date();
+          el.textContent = formatter.format(now);
+          el.dateTime = now.toISOString();
+        };
+
+        update();
+        setInterval(update, 30_000);
+      }
     </script>
   </body>
 </html>

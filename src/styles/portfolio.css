@@ -8,7 +8,6 @@
 
 .project-list {
   display: grid;
-  grid-template-columns: 1fr;
   gap: 1rem;
   margin: 0;
   padding: 0;
@@ -17,10 +16,9 @@
 
 .project-card {
   display: block;
-  height: 100%;
   padding: 1.25rem 1.25rem 1.1rem;
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 10px;
   background: var(--surface);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
   color: var(--text);
@@ -32,16 +30,7 @@
 .project-card:focus-visible {
   transform: translateY(-2px);
   border-color: var(--accent-border);
-  box-shadow: 0 16px 32px rgba(125, 211, 252, 0.12);
-}
-
-.project-year {
-  display: inline-block;
-  margin-bottom: 0.5rem;
-  color: var(--accent);
-  font-size: 0.74rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  box-shadow: 0 16px 32px rgba(227, 168, 104, 0.08);
 }
 
 .project-card h3 {

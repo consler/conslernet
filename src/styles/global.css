@@ -1,13 +1,12 @@
 :root {
-  --bg: #0b0d10;
+  --bg: #000000;
   --surface: rgba(18, 23, 29, 0.9);
   --text: #edf3f8;
   --muted: #aab7c4;
   --accent: #7dd3fc;
-  --border: rgba(255, 255, 255, 0.08);
+  --border: rgb(255 255 255 / 0.21);
   --accent-border: rgba(125, 211, 252, 0.6);
   color-scheme: dark;
-  font-family: Arial, Helvetica, sans-serif;
   line-height: 1.6;
   color: var(--text);
   background: var(--bg);
@@ -28,7 +27,6 @@ body {
   min-height: 100vh;
   margin: 0;
   background: var(--bg);
-  color: var(--text);
 }
 
 a {
@@ -55,14 +53,14 @@ h1 {
   margin: 0;
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   line-height: 1.05;
-  letter-spacing: -0.05em;
+  font-weight: 700;
 }
 
 .button {
   display: inline-block;
   padding: 0.75rem 1.1rem;
   border: 1px solid var(--accent-border);
-  border-radius: 999px;
+  border-radius: 5px;
   background: rgba(125, 211, 252, 0.1);
   color: var(--text);
   font-weight: 700;
@@ -83,10 +81,8 @@ h1 {
 .site-footer h2 {
   margin: 0 0 0.75rem;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .personal-info {
@@ -105,10 +101,8 @@ h1 {
 .personal-info .label {
   margin-right: 0.35rem;
   color: var(--accent);
-  font-size: 0.78rem;
+  font-size: 0.9rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .description,
@@ -143,22 +137,6 @@ h1 {
 
 .site-footer a:hover {
   text-decoration: underline;
-}
-
-#scroll-progress {
-  position: fixed;
-  z-index: 9999;
-  inset: 0 0 auto;
-  height: 3px;
-  pointer-events: none;
-}
-
-#scroll-progress .bar {
-  width: 0;
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent), rgba(125, 211, 252, 0.7));
-  box-shadow: 0 0 12px rgba(125, 211, 252, 0.08);
-  transition: width 120ms linear;
 }
 
 @media (max-width: 600px) {
